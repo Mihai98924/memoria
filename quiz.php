@@ -29,6 +29,22 @@
             background-size: cover;
             background-position: center;
         }
+
+        div.separator {
+            padding: 10px 0;
+        }
+
+        .corect {
+            color: green;
+        }
+
+        .gresit {
+            color: red;
+        }
+
+        .corect1 {
+            color: #00ff00;
+        }
     </style>
 </head>
 
@@ -46,10 +62,11 @@
                     <a href="" class="navbar-link">Evaluare</a>
                     <div class="navbar-dropdown">
                         <a href="quiz.php" class="navbar-item" style="color:#00d1b2">Test</a>
-                        <a href="" class="navbar-item">Subiect bac</a>
+                        <a href="doc/bac.pdf" class="navbar-item">Subiect bac</a>
                     </div>
                 </div>
                 <a href="contact.php" class="navbar-item">Contact</a>
+                <a href="despre.php" class="navbar-item">Despre</a>
             </div>
         </div>
     </nav>
@@ -162,7 +179,7 @@
                         }
                             
                         ?>
-                <div style="text-align:center;">
+                <div style="text-align:center;" class="content">
                     <h2>Răspunsuri corecte</h2>
                     <div style="font-size:5em;">
                         <?=$nr_raspunsuri_corecte?>/<?=$nr_raspunsuri?>
@@ -171,6 +188,9 @@
                         <a href="quiz.php" class="button is-primary is-outlined" id="buton"
                             style="margin:0;text-decoration:none;">Încearcă din nou</a>
                     </p>
+                    <div class="content has-text-centered">
+                        <a class="button is-link bmail">Trimite rezultatul pe e-mail</a>
+                    </div>
                 </div>
                 <ol>
                     <?php
@@ -289,10 +309,61 @@
         </main>
         <section class="is-medium">
             <div class="content aligning" style="padding:20px;">
-                <a href="doc/test.pdf" class="button is-link">Versiunea offline  <i class="fas fa-download"></i></a>
+                <a href="doc/test.pdf" class="button is-link">Versiunea offline <i class="fas fa-download"></i></a>
             </div>
         </section>
     </div>
+    <script>
+        $(document).on('click', '.navbar-burger', function () {
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+        });
+        $(document).on('click', '.bmail', function (e) {
+            e.preventDefault;
+            $(".mail").addClass("is-active");
+        });
+        $(document).on('click', '.close_modal', function (e) {
+            e.preventDefault;
+            $(".modal").removeClass("is-active");
+        });
+    </script>
+    <?php
+        include "module/mail.php";
+    ?>
+    <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+if(isset($_POST['submit']))
+{
+    require 'phpmail/src/Exception.php';
+    require 'phpmail/src/PHPMailer.php';
+    require 'phpmail/src/SMTP.php';
+
+    $mail = new PHPMailer;         
+    $mail->isSMTP();                    
+    $mail->Host = "smtp.gmail.com";
+    $mail->SMTPAuth = true;               
+    $mail->Username = "contact.memorie@gmail.com";                 
+    $mail->Password = "Memoria2410";                 
+    $mail->SMTPSecure = "tls";       
+    $mail->Port = 587;                                   
+    $mail->From = "contact.memorie@gmail.com";
+    $mail->FromName = "Memoria";
+    $mail->addAddress($_POST['email']);
+    $mail->isHTML(true);
+    $mail->Subject = "Rezultat evaluare";
+    $mail->Body = "<h2>Răspunsuri corecte</h2><p><?php echo $nr_raspunsuri_corecte; ?>/<?php echo $nr_raspunsuri; ?></p>";
+    if(!$mail->send()) 
+    {
+        echo "Mailer Error: " . $mail->ErrorInfo;
+    } 
+    else 
+    {
+        echo $nr_raspunsuri_corecte;
+    }
+}
+?>
 </body>
 
 </html>

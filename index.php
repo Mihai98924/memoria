@@ -61,10 +61,11 @@
                         <a href="" class="navbar-link">Evaluare</a>
                         <div class="navbar-dropdown">
                             <a href="quiz.php" class="navbar-item">Test</a>
-                            <a href="" class="navbar-item">Subiect bac</a>
+                            <a href="doc/bac.pdf" class="navbar-item">Subiect bac</a>
                         </div>
                     </div>
                     <a href="contact.php" class="navbar-item">Contact</a>
+                    <a href="despre.php" class="navbar-item">Despre</a>
                 </div>
             </div>
         </nav>
@@ -76,8 +77,6 @@
         </section>
     </div>
     <?php
-        include "module/login.html";
-        include "module/signup.html";
         include "module/modal1.php";
         include "module/modal2.php";
         include "module/modal3.php";
@@ -91,14 +90,6 @@
         $(document).on('click', '.navbar-burger', function () {
             $(".navbar-burger").toggleClass("is-active");
             $(".navbar-menu").toggleClass("is-active");
-        });
-        $(document).on('click', '#conect', function (e) {
-            e.preventDefault;
-            $(".login").addClass("is-active");
-        });
-        $(document).on('click', '#sign_up', function (e) {
-            e.preventDefault;
-            $(".signup").addClass("is-active");
         });
         $(document).on('click', '.close_modal', function (e) {
             e.preventDefault;

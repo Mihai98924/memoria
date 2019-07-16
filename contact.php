@@ -1,3 +1,7 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+?>
 <!DOCTYPE html>
 <html lang="ro">
 
@@ -31,10 +35,11 @@
                     <a href="" class="navbar-link">Evaluare</a>
                     <div class="navbar-dropdown">
                         <a href="quiz.php" class="navbar-item">Test</a>
-                        <a href="" class="navbar-item">Subiect bac</a>
+                        <a href="doc/bac.pdf" class="navbar-item">Subiect bac</a>
                     </div>
                 </div>
                 <a href="contact.php" class="navbar-item" style="color:#00d1b2">Contact</a>
+                <a href="despre.php" class="navbar-item">Despre</a>
             </div>
         </div>
     </nav>
@@ -48,10 +53,6 @@
         </div>
         <div class="separator"></div>
         <div class="columns is-centered">
-            <!-- <div class="column is-half">
-                <div class="content">
-                </div>
-            </div> -->
             <div class="column is-half">
                 <div class="box">
                 <form action="contact.php" method="post">
@@ -75,6 +76,12 @@
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">Subiect</label>
+                        <div class="control">
+                            <input class="input" name="subject" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
                         <label class="label">Mesaj</label>
                         <div class="control">
                             <textarea class="textarea" name="text" placeholder="Scrie aici..." required></textarea>
@@ -82,44 +89,33 @@
                     </div>
                     <div class="field">
                         <div class="control">
-                                <button name="submit" class="button is-link">Trimite</button>
+                            <button name="submit" class="button is-link">Trimite</button>
                         </div>
                     </div>
                     </form>
+                    <div class="separator"></div>
                     <div class="content">
                     <?php
-                        use PHPMailer\PHPMailer\PHPMailer;
-                        use PHPMailer\PHPMailer\Exception;
-
                         if(isset($_POST['submit']))
                         {
                             require 'phpmail/src/Exception.php';
                             require 'phpmail/src/PHPMailer.php';
                             require 'phpmail/src/SMTP.php';
 
-                            $mail = new PHPMailer;                         
-                            //Set PHPMailer to use SMTP.
-                            $mail->isSMTP();            
-                            //Set SMTP host name                          
+                            $mail = new PHPMailer;         
+                            $mail->isSMTP();                    
                             $mail->Host = "smtp.gmail.com";
-                            //Set this to true if SMTP host requires authentication to send email
-                            $mail->SMTPAuth = true;                          
-                            //Provide username and password     
+                            $mail->SMTPAuth = true;               
                             $mail->Username = "contact.memorie@gmail.com";                 
-                            $mail->Password = "Memoria2410";                           
-                            //If SMTP requires TLS encryption then set it
-                            $mail->SMTPSecure = "tls";                           
-                            //Set TCP port to connect to 
+                            $mail->Password = "Memoria2410";                 
+                            $mail->SMTPSecure = "tls";       
                             $mail->Port = 587;                                   
-
                             $mail->From = $_POST['email'];
                             $mail->FromName = $_POST['nume'];
-
-                            $mail->addAddress("contact.memorie@gmail.com", "Contact");
-
+                            $mail->addReplyTo($_POST['email'], "Reply");
+                            $mail->addAddress("contact.memorie@gmail.com");
                             $mail->isHTML(true);
-
-                            $mail->Subject = "Subject Text";
+                            $mail->Subject = $_POST['subject'];
                             $mail->Body = $_POST['text'];
 
                             if(!$mail->send()) 
@@ -128,11 +124,17 @@
                             }
                             else echo '<h3 class="has-text-centered" style="color:#00d1b2">Mulțumim pentru feedback!</h3>';
                         }
-                        ?>
+                    ?>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <script>
+        $(document).on('click', '.navbar-burger', function () {
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+        });
+    </script>
 </body>
 </html>
