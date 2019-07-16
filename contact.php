@@ -112,10 +112,10 @@
                             //Set TCP port to connect to 
                             $mail->Port = 587;                                   
 
-                            $mail->From = "contact.memorie@gmail.com";
-                            $mail->FromName = "Contact Memoria";
+                            $mail->From = $_POST['email'];
+                            $mail->FromName = $_POST['nume'];
 
-                            $mail->addAddress($_POST['email'], $_POST['nume']);
+                            $mail->addAddress("contact.memorie@gmail.com", "Contact");
 
                             $mail->isHTML(true);
 
