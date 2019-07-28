@@ -7,8 +7,11 @@
         </header>
         <form action="quiz.php" method="post">
             <section class="modal-card-body">
+               <div class="content">
+                   <p class="red">*Obligatoriu</p>
+               </div>
                 <div class="field">
-                    <label class="label">Nume</label>
+                    <label class="label">Nume <span class="red">*</span></label>
                     <div class="control has-icons-left has-icons-right">
                         <input class="input" type="text" name="nume" required>
                         <span class="icon is-small is-left">
@@ -19,7 +22,7 @@
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label">E-mail</label>
+                    <label class="label">E-mail <span class="red">*</span></label>
                     <div class="control has-icons-left">
                         <input class="input" type="email" name="email" required>
                         <span class="icon is-small is-left">

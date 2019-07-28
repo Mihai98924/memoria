@@ -11,12 +11,14 @@ use PHPMailer\PHPMailer\Exception;
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="icon" href="./images/icon.png">
     <style>
         div.separator {
             padding: 10px 0;
+        }
+        .red{
+            color:red;
         }
     </style>
 </head>
@@ -55,46 +57,49 @@ use PHPMailer\PHPMailer\Exception;
         <div class="columns is-centered">
             <div class="column is-half">
                 <div class="box">
-                <form action="contact.php" method="post">
-                    <div class="field">
-                        <label class="label">Nume</label>
-                        <div class="control has-icons-left">
-                            <input class="input" name="nume" type="text" required>
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
-                        </div>
+                    <div class="content">
+                        <p class="red">*Obligatoriu</p>
                     </div>
-                    <div class="field">
-                        <label class="label">E-mail</label>
-                        <div class="control has-icons-left">
-                            <input class="input" name="email" type="email" required>
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
+                    <form action="contact.php" method="post">
+                        <div class="field">
+                            <label class="label">Nume <span class="red">*</span></label>
+                            <div class="control has-icons-left">
+                                <input class="input" name="nume" type="text" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Subiect</label>
-                        <div class="control">
-                            <input class="input" name="subject" type="text">
+                        <div class="field">
+                            <label class="label">E-mail <span class="red">*</span></label>
+                            <div class="control has-icons-left">
+                                <input class="input" name="email" type="email" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Mesaj</label>
-                        <div class="control">
-                            <textarea class="textarea" name="text" placeholder="Scrie aici..." required></textarea>
+                        <div class="field">
+                            <label class="label">Subiect <span class="red">*</span></label>
+                            <div class="control">
+                                <input class="input" name="subject" type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <button name="submit" class="button is-link">Trimite</button>
+                        <div class="field">
+                            <label class="label">Mesaj <span class="red">*</span></label>
+                            <div class="control">
+                                <textarea class="textarea" name="text" placeholder="Scrie aici..." required></textarea>
+                            </div>
                         </div>
-                    </div>
+                        <div class="field">
+                            <div class="control">
+                                <button name="submit" class="button is-link">Trimite</button>
+                            </div>
+                        </div>
                     </form>
                     <div class="separator"></div>
                     <div class="content">
-                    <?php
+                        <?php
                         if(isset($_POST['submit']))
                         {
                             require 'phpmail/src/Exception.php';
@@ -129,10 +134,12 @@ use PHPMailer\PHPMailer\Exception;
         </div>
     </main>
     <script>
-        $(document).on('click', '.navbar-burger', function () {
+        $(document).on('click', '.navbar-burger', function() {
             $(".navbar-burger").toggleClass("is-active");
             $(".navbar-menu").toggleClass("is-active");
         });
+
     </script>
 </body>
+
 </html>

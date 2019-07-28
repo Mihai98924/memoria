@@ -37,7 +37,7 @@
             color: green;
         }
 
-        .gresit {
+        .gresit,.red {
             color: red;
         }
 
