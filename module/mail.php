@@ -10,7 +10,7 @@
                 <div class="field">
                     <label class="label">Nume</label>
                     <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="text" name="nume">
+                        <input class="input" type="text" name="nume" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
@@ -21,7 +21,7 @@
                 <div class="field">
                     <label class="label">E-mail</label>
                     <div class="control has-icons-left">
-                        <input class="input" type="email" name="email">
+                        <input class="input" type="email" name="email" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>

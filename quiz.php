@@ -62,7 +62,7 @@
                     <a href="" class="navbar-link">Evaluare</a>
                     <div class="navbar-dropdown">
                         <a href="quiz.php" class="navbar-item" style="color:#00d1b2">Test</a>
-                        <a href="doc/bac.pdf" class="navbar-item">Subiect bac</a>
+                        <a href="doc/bac.pdf" class="navbar-item">Model subiect bacalaureat</a>
                     </div>
                 </div>
                 <a href="contact.php" class="navbar-item">Contact</a>
@@ -350,7 +350,7 @@
         $mail->Body = "<h2>Răspunsuri corecte</h2><h3>Ai răspuns corect la {$_SESSION['rasp']} întrebări din {$_SESSION['nr_raspunsuri']}</h3>";
         if(!$mail->send()) 
         {
-            echo "Mailer Error: " . $mail->ErrorInfo;
+            echo '<h1 style="color:red">Încearcă mai târziu!</h1>';
         }
     }
     ?>

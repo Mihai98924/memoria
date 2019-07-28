@@ -35,7 +35,7 @@ use PHPMailer\PHPMailer\Exception;
                     <a href="" class="navbar-link">Evaluare</a>
                     <div class="navbar-dropdown">
                         <a href="quiz.php" class="navbar-item">Test</a>
-                        <a href="doc/bac.pdf" class="navbar-item">Subiect bac</a>
+                        <a href="doc/bac.pdf" class="navbar-item">Model subiect bacalaureat</a>
                     </div>
                 </div>
                 <a href="contact.php" class="navbar-item" style="color:#00d1b2">Contact</a>
@@ -71,7 +71,6 @@ use PHPMailer\PHPMailer\Exception;
                             <input class="input" name="email" type="email" required>
                             <span class="icon is-small is-left">
                                 <i class="fas fa-envelope"></i>
-                            </span>
                             </span>
                         </div>
                     </div>
