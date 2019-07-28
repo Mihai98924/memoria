@@ -13,8 +13,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="icon" href="./images/icon.png">
     <style>
         .aligning {
@@ -29,11 +28,11 @@
             background-size: cover;
             background-position: center;
         }
-
+        
         div.separator {
             padding: 10px 0;
         }
-
+        
         .corect {
             color: green;
         }
@@ -45,6 +44,7 @@
         .corect1 {
             color: #00ff00;
         }
+
     </style>
 </head>
 
@@ -72,9 +72,11 @@
     </nav>
     <div class="back">
         <div class="separator"></div>
+        <div class="separator"></div>
         <main class="bd-main-container">
             <div class="content">
                 <?php
+                    session_start();
                     if(! isset($_POST['formular']))
                     {
                 ?>
@@ -85,56 +87,49 @@
                         <?php
                             foreach($intrebari as $index => $intrebare)
                             {
-                                ?>
+                        ?>
                         <li>
-                            <p>
-                                <?=$intrebare['enunt']?>
-                            </p>
+                            <p><?=$intrebare['enunt']?></p>
                             <blockquote>
                                 <?php
-                                            if(!empty($intrebare['text']))
-                                            {
-                                                ?>
+                                    if(!empty($intrebare['text']))
+                                    {
+                                ?>
                                 <p><?=$intrebare['text']?></p>
                                 <?php
-                                            }
-                                            if($intrebare['tip'] == 'radio')
-                                            {
-                                                ?>
-
+                                    }
+                                    if($intrebare['tip'] == 'radio')
+                                    {
+                                ?>
                                 <?php
-                                                        foreach($intrebare['variante'] as $iv => $varianta)
-                                                        {
-                                                            ?>
-
-                                <label><input type="radio" name="intrebare_<?=$index?>" value="<?=$iv?>">
-                                    <?=$varianta['raspuns']?> </label><br>
-
+                                    foreach($intrebare['variante'] as $iv => $varianta)
+                                    {
+                                ?>
+                                <label><input type="radio" name="intrebare_<?=$index?>" value="<?=$iv?>"><?=$varianta['raspuns']?></label><br>
                                 <?php
-                                                        }
-                                                    ?>
+                                    }
+                                ?>
                                 <?php
-                                            }
-                                            if($intrebare['tip'] == 'select')
-                                            {
-                                                ?>
+                                    }
+                                    if($intrebare['tip'] == 'select')
+                                    {
+                                ?>
                                 <div>
                                     <select name="intrebare_<?=$index?>">
                                         <option disabled selected value="-1"></option>
                                         <?php
-                                                            foreach($intrebare['variante'] as $iv => $varianta)
-                                                            {
-                                                                ?>
+                                            foreach($intrebare['variante'] as $iv => $varianta)
+                                            {
+                                        ?>
                                         <option value="<?=$iv?>"><?=$varianta['raspuns']?></option>
                                         <?php
-                                                            }
-                                                        ?>
-                                    </select>
-                                </div>
-                                <?php
-                                                
                                             }
                                         ?>
+                                    </select>
+                                </div>
+                                <?php   
+                                    }
+                                ?>
                             </blockquote>
                         </li>
                         <?php
@@ -143,9 +138,7 @@
                     </ol>
                     <div class="aligning">
                         <div class="buttons">
-                            <input type="submit" class="button is-outlined is-success is-medium" value="Trimite"
-                                id="buton" /> <input type="reset" class="button is-outlined is-danger is-medium"
-                                value="Reset" id="buton" />
+                            <input type="submit" class="button is-outlined is-success is-medium" value="Trimite" id="buton" /> <input type="reset" class="button is-outlined is-danger is-medium" value="Reset" id="buton" />
                         </div>
                     </div>
                 </form>
@@ -175,9 +168,11 @@
                         foreach($rezultate as $r)
                         {
                             if($r['corect'])
-                                $nr_raspunsuri_corecte ++;
+                                $nr_raspunsuri_corecte++;
                         }
-                            
+                        $rasp=$nr_raspunsuri_corecte;
+                        $_SESSION['rasp']=$rasp;
+                        $_SESSION['nr_raspunsuri']=$nr_raspunsuri;
                         ?>
                 <div style="text-align:center;" class="content">
                     <h2>Răspunsuri corecte</h2>
@@ -185,8 +180,7 @@
                         <?=$nr_raspunsuri_corecte?>/<?=$nr_raspunsuri?>
                     </div>
                     <p>
-                        <a href="quiz.php" class="button is-primary is-outlined" id="buton"
-                            style="margin:0;text-decoration:none;">Încearcă din nou</a>
+                        <a href="quiz.php" class="button is-primary is-outlined" id="buton" style="margin:0;text-decoration:none;">Încearcă din nou</a>
                     </p>
                     <div class="content has-text-centered">
                         <a class="button is-link bmail">Trimite rezultatul pe e-mail</a>
@@ -194,113 +188,112 @@
                 </div>
                 <ol>
                     <?php
-							foreach($intrebari as $index => $intrebare)
-                            {
-                                ?>
+                        foreach($intrebari as $index => $intrebare)
+                        {
+                    ?>
                     <li>
                         <p>
                             <?=$intrebare['enunt']?>
                         </p>
                         <blockquote>
                             <?php
-                                            if(!empty($intrebare['text']))
-                                            {
-                                                ?>
+                                if(!empty($intrebare['text']))
+                                {
+                            ?>
                             <p><?=$intrebare['text']?></p>
                             <?php
-                                            }
-											
-                                            if($intrebare['tip'] == 'radio')
-                                            {
-                                                ?>
+                                }
+                                
+                                if($intrebare['tip'] == 'radio')
+                                {
+                            ?>
                             <ul type="a">
                                 <?php
-                                                        foreach($intrebare['variante'] as $iv => $varianta)
-                                                        {
-															$class= "";
-															if(!isset($_POST["intrebare_{$index}"]))
-															{
-																if($varianta['corect'])
-																		$class = "corect1";
-															}
-															else
-															{
-																if($rezultate[$index]['corect'])
-																{
-																	if($varianta['corect'])
-																		$class = "corect";
-																}
-																else
-																{
-																	if($varianta['corect'])
-																		$class = "corect";
-																	else
-																		if($rezultate[$index]['raspuns'] == $iv)
-																		{
-																			$class = "gresit";
-																		}
-																}
-															}
-                                                            ?>
+                                    foreach($intrebare['variante'] as $iv => $varianta)
+                                    {
+                                        $class= "";
+                                        if(!isset($_POST["intrebare_{$index}"]))
+                                        {
+                                            if($varianta['corect'])
+                                                    $class = "corect1";
+                                        }
+                                        else
+                                        {
+                                            if($rezultate[$index]['corect'])
+                                            {
+                                                if($varianta['corect'])
+                                                    $class = "corect";
+                                            }
+                                            else
+                                            {
+                                                if($varianta['corect'])
+                                                    $class = "corect";
+                                                else
+                                                    if($rezultate[$index]['raspuns'] == $iv)
+                                                    {
+                                                        $class = "gresit";
+                                                    }
+                                            }
+                                        }
+                                ?>
                                 <li class="<?=$class?>">
                                     <?=$varianta['raspuns']?>
                                 </li>
                                 <?php
-                                                        }
-                                                    ?>
+                                    }
+                                ?>
                             </ul>
                             <?php
-                                            }
-                                            if($intrebare['tip'] == 'select')
-                                            {
-                                                ?>
+                                }
+                                if($intrebare['tip'] == 'select')
+                                {
+                            ?>
                             <div>
                                 <ul>
                                     <?php
-														foreach($intrebare['variante'] as $iv => $varianta)
-														{
-															$class= "";
-															if(!isset($_POST["intrebare_{$index}"]))
-															{
-																if($varianta['corect'])
-																		$class = "corect1";
-															}
-															else
-															{
-																if($rezultate[$index]['corect'])
-																{
-																	if($varianta['corect'])
-																		$class = "corect";
-																}
-																else
-																{
-																	if($varianta['corect'])
-																		$class = "corect";
-																	else
-																		if($rezultate[$index]['raspuns'] == $iv)
-																		{
-																			$class = "gresit";
-																		}
-																}
-															}
-															?>
+                                        foreach($intrebare['variante'] as $iv => $varianta)
+                                        {
+                                            $class= "";
+                                            if(!isset($_POST["intrebare_{$index}"]))
+                                            {
+                                                if($varianta['corect'])
+                                                        $class = "corect1";
+                                            }
+                                            else
+                                            {
+                                                if($rezultate[$index]['corect'])
+                                                {
+                                                    if($varianta['corect'])
+                                                        $class = "corect";
+                                                }
+                                                else
+                                                {
+                                                    if($varianta['corect'])
+                                                        $class = "corect";
+                                                    else
+                                                        if($rezultate[$index]['raspuns'] == $iv)
+                                                        {
+                                                            $class = "gresit";
+                                                        }
+                                                }
+                                            }
+                                        ?>
                                     <li class="<?=$class?>">
                                         <?=$varianta['raspuns']?>
                                     </li>
                                     <?php
-														}
-													?>
+                                        }
+				                    ?>
                                 </ul>
                             </div>
-                            <?php
-                                                
-                                            }
-                                        ?>
+                            <?php    
+                                }
+                            ?>
                         </blockquote>
                     </li>
                     <?php
-                            }
-							?>
+                        }
+                    ?>
                 </ol>
                 <?php
                     }
@@ -314,56 +307,53 @@
         </section>
     </div>
     <script>
-        $(document).on('click', '.navbar-burger', function () {
+        $(document).on('click', '.navbar-burger', function() {
             $(".navbar-burger").toggleClass("is-active");
             $(".navbar-menu").toggleClass("is-active");
         });
-        $(document).on('click', '.bmail', function (e) {
+        $(document).on('click', '.bmail', function(e) {
             e.preventDefault;
             $(".mail").addClass("is-active");
         });
-        $(document).on('click', '.close_modal', function (e) {
+        $(document).on('click', '.close_modal', function(e) {
             e.preventDefault;
             $(".modal").removeClass("is-active");
         });
+
     </script>
     <?php
         include "module/mail.php";
     ?>
     <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
-if(isset($_POST['submit']))
-{
-    require 'phpmail/src/Exception.php';
-    require 'phpmail/src/PHPMailer.php';
-    require 'phpmail/src/SMTP.php';
+    if(isset($_POST['submit']))
+    {
+        require 'phpmail/src/Exception.php';
+        require 'phpmail/src/PHPMailer.php';
+        require 'phpmail/src/SMTP.php';
 
-    $mail = new PHPMailer;         
-    $mail->isSMTP();                    
-    $mail->Host = "smtp.gmail.com";
-    $mail->SMTPAuth = true;               
-    $mail->Username = "contact.memorie@gmail.com";                 
-    $mail->Password = "Memoria2410";                 
-    $mail->SMTPSecure = "tls";       
-    $mail->Port = 587;                                   
-    $mail->From = "contact.memorie@gmail.com";
-    $mail->FromName = "Memoria";
-    $mail->addAddress($_POST['email']);
-    $mail->isHTML(true);
-    $mail->Subject = "Rezultat evaluare";
-    $mail->Body = "<h2>Răspunsuri corecte</h2><p><?php echo $nr_raspunsuri_corecte; ?>/<?php echo $nr_raspunsuri; ?></p>";
-    if(!$mail->send()) 
-    {
-        echo "Mailer Error: " . $mail->ErrorInfo;
-    } 
-    else 
-    {
-        echo $nr_raspunsuri_corecte;
+        $mail = new PHPMailer;         
+        $mail->isSMTP();                    
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;               
+        $mail->Username = "contact.memorie@gmail.com";                 
+        $mail->Password = "Memoria2410";                 
+        $mail->SMTPSecure = "tls";       
+        $mail->Port = 587;                                   
+        $mail->From = "contact.memorie@gmail.com";
+        $mail->FromName = "Memoria";
+        $mail->addAddress($_POST['email']);
+        $mail->isHTML(true);
+        $mail->Subject = "Rezultat evaluare";
+        $mail->Body = "<h2>Răspunsuri corecte</h2><h3>Ai răspuns corect la {$_SESSION['rasp']} întrebări din {$_SESSION['nr_raspunsuri']}</h3>";
+        if(!$mail->send()) 
+        {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        }
     }
-}
-?>
+    ?>
 </body>
 
 </html>

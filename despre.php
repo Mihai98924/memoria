@@ -7,8 +7,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="icon" href="./images/icon.png">
     <style>
         div.separator {
@@ -20,8 +19,6 @@
 <body>
     <div>
         <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-            </div>
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="Nav">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -42,30 +39,31 @@
                 </div>
             </div>
         </nav>
-        <div class="separator"></div>
-        <section>
-            <div class="columns is-centered">
-                <div class="column is-four-fifths">
-                    <div class="box">
-                        <div class="content">
-                            <h5 class="has-text-centered"><q>Fără memorie, nu există cultură. Fără memorie, nu ar exista nici civilizaţie, nici societate, nici viitor.</q> - Elie Wiesel</h5>
-                            <p>Bibliografie:</p>
-                            <ul>
-                                <li>Manual de Psihologie - editura Corvin</li>
-                                <li>Manual de Psihologie - editura Aramis</li>
-                                <li><a href="https://www.youtube.com/user/TEDEducation">TED-Ed</a></li>
-                            </ul>
-                        </div>
-                    </div>
+        <section class="hero is-fullheight-with-navbar is-primary is-bold">
+            <div class="hero-body">
+                <div class="content">
+                    <p class="has-text-centered title"><q>Fără memorie, nu există cultură. Fără memorie, nu ar exista nici civilizaţie, nici societate, nici viitor.</q> - Elie Wiesel</p>
+                    <p class="subtitle">Bibliografie:</p>
+                    <ul class="subtitle">
+                        <li>Manual de Psihologie - editura Corvin</li>
+                        <li>Manual de Psihologie - editura Aramis</li>
+                    </ul>
+                    <p class="subtitle">Media:</p>
+                    <ul class="subtitle">
+                        <li><a href="https://www.youtube.com/user/TEDEducation">TED-Ed</a></li>
+                        <li><a href="https://unsplash.com/">Unsplash</a></li>
+                        <li><a href="https://www.freepik.com/">freepik</a></li>
+                    </ul>
                 </div>
             </div>
         </section>
     </div>
     <script>
-        $(document).on('click', '.navbar-burger', function () {
+        $(document).on('click', '.navbar-burger', function() {
             $(".navbar-burger").toggleClass("is-active");
             $(".navbar-menu").toggleClass("is-active");
         });
+
     </script>
 </body>
 
