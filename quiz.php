@@ -138,7 +138,7 @@
                     </ol>
                     <div class="aligning">
                         <div class="buttons">
-                            <input type="submit" class="button is-outlined is-success is-medium" value="Trimite" id="buton" /> <input type="reset" class="button is-outlined is-danger is-medium" value="Reset" id="buton" />
+                            <input type="submit" class="button is-outlined is-success is-medium" value="Trimite" id="buton" /> <input type="reset" class="button is-outlined is-danger is-medium" value="Resetează" id="buton" />
                         </div>
                     </div>
                 </form>
@@ -335,7 +335,8 @@
         require 'phpmail/src/SMTP.php';
 
         $mail = new PHPMailer;         
-        $mail->isSMTP();                    
+        $mail->isSMTP();
+        $mail->CharSet = 'UTF-8';
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;               
         $mail->Username = "contact.memorie@gmail.com";                 

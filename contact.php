@@ -100,9 +100,9 @@ use PHPMailer\PHPMailer\Exception;
                             require 'phpmail/src/Exception.php';
                             require 'phpmail/src/PHPMailer.php';
                             require 'phpmail/src/SMTP.php';
-
                             $mail = new PHPMailer;         
-                            $mail->isSMTP();                    
+                            $mail->isSMTP();
+                            $mail->CharSet = 'UTF-8';
                             $mail->Host = "smtp.gmail.com";
                             $mail->SMTPAuth = true;               
                             $mail->Username = "contact.memorie@gmail.com";                 
@@ -116,7 +116,6 @@ use PHPMailer\PHPMailer\Exception;
                             $mail->isHTML(true);
                             $mail->Subject = $_POST['subject'];
                             $mail->Body = $_POST['text'];
-
                             if(!$mail->send()) 
                             {
                                 echo '<h3 class="has-text-centered" style="color:red">Încearcă mai târziu!</h3>';
