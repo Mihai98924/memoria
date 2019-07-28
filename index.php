@@ -182,7 +182,7 @@
         });
         var $description = $(".description");
         $('.enabled').hover(function() {
-            $(this).attr("class", "enabled heyo modal_1");
+            $(this).addClass("enabled heyo");
             $description.addClass("active");
             $description.html($(this).attr('id'));
         }, function() {
