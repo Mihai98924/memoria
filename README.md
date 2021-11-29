@@ -7,4 +7,4 @@ Având in vedere documentația despre memorie pe care o ai pe pagina principală
 ## Contact
 Dacă ai întrebări despre site sau conținutul acestuia poți să ne scrii un mesaj mergând la categoria cu numele „Contact”.
 ## Despre
-Sursele care au dus la crearea conținutului acestui site le poți găsi mergând la categoria „Despre”.
+Sursele care au dus la crearea conținutului, si materialele video folosite pe acest site le poți găsi mergând la categoria „Despre”.
